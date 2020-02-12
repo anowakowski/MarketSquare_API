@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\projects\\marketSquare\\MarketSquare_API\\MarketSquare.API\\MarketSquare.API\\MarketSquare.API.csproj": {}
+    "d:\\projects\\marketSquare\\MarketSquare_API\\MarketSquare.API\\MarketSquare.API.csproj": {}
   },
   "projects": {
-    "D:\\projects\\marketSquare\\MarketSquare_API\\MarketSquare.API\\MarketSquare.API\\MarketSquare.API.csproj": {
+    "d:\\projects\\marketSquare\\MarketSquare_API\\MarketSquare.API\\MarketSquare.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\projects\\marketSquare\\MarketSquare_API\\MarketSquare.API\\MarketSquare.API\\MarketSquare.API.csproj",
+        "projectUniqueName": "d:\\projects\\marketSquare\\MarketSquare_API\\MarketSquare.API\\MarketSquare.API.csproj",
         "projectName": "MarketSquare.API",
-        "projectPath": "D:\\projects\\marketSquare\\MarketSquare_API\\MarketSquare.API\\MarketSquare.API\\MarketSquare.API.csproj",
+        "projectPath": "d:\\projects\\marketSquare\\MarketSquare_API\\MarketSquare.API\\MarketSquare.API.csproj",
         "packagesPath": "C:\\Users\\anowakowski\\.nuget\\packages\\",
-        "outputPath": "D:\\projects\\marketSquare\\MarketSquare_API\\MarketSquare.API\\MarketSquare.API\\obj\\",
+        "outputPath": "d:\\projects\\marketSquare\\MarketSquare_API\\MarketSquare.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
