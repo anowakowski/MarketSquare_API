@@ -31,7 +31,7 @@ namespace MarketSquare.API
             services.AddControllers();
 
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly(typeof(Startup).Namespace)));
-
+            services.AddScoped<DbContext>(sp => sp.GetRequiredService<DataContext>());
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IRepositoryFactory, RepositoryFactory>();
         }
