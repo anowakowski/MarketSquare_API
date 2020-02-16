@@ -4,3 +4,4 @@ namespace MarketSquare.API.Data
     {
         public int Id { get; set; }
     }
+}
