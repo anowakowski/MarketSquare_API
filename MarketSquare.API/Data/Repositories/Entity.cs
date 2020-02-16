@@ -1,4 +1,4 @@
-namespace MarketSquare.API.Data
+namespace MarketSquare.API.Data.Repositories
 {
     public class Entity : IEntity
     {

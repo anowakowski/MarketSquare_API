@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace MarketSquare.API.Data
+namespace MarketSquare.API.Data.Repositories
 {
     public interface IRepository<TEntity>
     {
