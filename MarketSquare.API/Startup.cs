@@ -34,6 +34,7 @@ namespace MarketSquare.API
             services.AddScoped<DbContext>(sp => sp.GetRequiredService<DataContext>());
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IRepositoryFactory, RepositoryFactory>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
