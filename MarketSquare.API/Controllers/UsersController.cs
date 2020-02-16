@@ -14,9 +14,13 @@ namespace MarketSquare.API.Controllers
          [HttpGet("getAllUsers")]
         public async Task<IActionResult> GetAllUsers()
         {
-            var users = await GetAllUsers();
+            var users = new List<string>
+            {
+                "test1",
+                "test2"
+            };
 
-            return Ok();
+            return Ok(users);
         }
     }
 }

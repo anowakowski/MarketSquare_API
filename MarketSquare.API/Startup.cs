@@ -53,6 +53,9 @@ namespace MarketSquare.API
 
             app.UseAuthorization();
 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            //app.UseMvc();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
