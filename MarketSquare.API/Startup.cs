@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MarketSquare.API.Data;
 using MarketSquare.API.Data.Repositories;
+using MarketSquare.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +36,7 @@ namespace MarketSquare.API
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IRepositoryFactory, RepositoryFactory>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
