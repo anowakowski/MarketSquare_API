@@ -1,4 +1,5 @@
 using System;
+using MarketSquare.API.Data.Models;
 
 namespace MarketSquare.API.Data.Repositories
 {

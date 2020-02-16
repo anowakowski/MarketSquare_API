@@ -1,4 +1,5 @@
 using MarketSquare.API.Data.Helpers;
+using MarketSquare.API.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
