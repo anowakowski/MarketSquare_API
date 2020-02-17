@@ -5,3 +5,5 @@ obj
 *.db
 *.db-journal
 *.sln.DotSettings.user
+*.db-shm
+*.db-wal
