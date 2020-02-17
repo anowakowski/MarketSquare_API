@@ -6,6 +6,6 @@ namespace MarketSquare.API.Services
 {
     public interface INoticeService
     {
-        Task<IEnumerable<Notice>> GetNotices();
+        Task<IEnumerable<NoticeTag>> GetNotices();
     }
 }

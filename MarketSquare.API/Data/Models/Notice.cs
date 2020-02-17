@@ -10,6 +10,5 @@ namespace MarketSquare.API.Data.Models
 
         public User Creator { get; set; }
         public DateTime CreationDateTime { get;set; }
-        public ICollection<NoticeTag> NoticeTags {get;set;}
     }
 }
