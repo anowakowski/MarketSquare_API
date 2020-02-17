@@ -37,6 +37,7 @@ namespace MarketSquare.API
             services.AddScoped<IRepositoryFactory, RepositoryFactory>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITagService, TagService>();
             services.AddScoped<ISettingsService, SettingsService>();
         }
 
