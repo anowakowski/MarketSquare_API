@@ -22,7 +22,7 @@ namespace MarketSquare.API.Services
         {
             var users = await _userRepository.GetAllAsync();
 
-            var usersDto = _mapper.Map<UserForDetailedDto>(users);
+            var usersDto = _mapper.Map<IEnumerable<UserForDetailedDto>>(users);
 
             return usersDto;
         }
