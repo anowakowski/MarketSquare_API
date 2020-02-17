@@ -7,16 +7,16 @@ namespace MarketSquare.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ListController : ControllerBase
+    public class NoticesController : ControllerBase
     {
         private readonly INoticeService _noticeService;
-        public ListController(INoticeService noticeService)
+        public NoticesController(INoticeService noticeService)
         {
             _noticeService = noticeService ?? throw new ArgumentNullException(nameof(noticeService));
         }
 
         [HttpGet("getAllNotices")]
-        public async Task<IActionResult> GetAllUsers()
+        public async Task<IActionResult> getAllNotices()
         {
             var notices = await _noticeService.GetNotices();
 

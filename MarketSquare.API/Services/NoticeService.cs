@@ -14,7 +14,7 @@ namespace MarketSquare.API.Services
         }
 
         public async Task<IEnumerable<Notice>> GetNotices(){
-            return await _noticeRepository.GetAllAsync();
+            return await _noticeRepository.FindAsyncWithIncludedEntities(x => true, include => include.NoticeTags);
         }
     }
 }
