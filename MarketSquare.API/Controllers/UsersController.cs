@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MarketSquare.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -11,16 +12,16 @@ namespace MarketSquare.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-         [HttpGet("getAllUsers")]
+        private readonly IUserService _userService;
+        public UsersController(IUserService userService)
+        {
+            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+        }
+
+        [HttpGet("getAllUsers")]
         public async Task<IActionResult> GetAllUsers()
         {
-            // get users shouldbe from userServices with async
-            // sample data
-            var users = new List<string>
-            {
-                "test1",
-                "test2"
-            };
+            var users = await _userService.GetUsers();
 
             return Ok(users);
         }
