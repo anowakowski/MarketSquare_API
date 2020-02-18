@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarketSquare.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200217175643_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200218125748_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,7 +27,7 @@ namespace MarketSquare.API.Migrations
                     b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("CreatorId")
+                    b.Property<int>("CreatorId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
@@ -171,7 +171,9 @@ namespace MarketSquare.API.Migrations
                 {
                     b.HasOne("MarketSquare.API.Data.Models.User", "Creator")
                         .WithMany()
-                        .HasForeignKey("CreatorId");
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MarketSquare.API.Data.Models.NoticeTag", b =>
