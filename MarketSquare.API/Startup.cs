@@ -43,6 +43,7 @@ namespace MarketSquare.API
             services.AddScoped<ITagService, TagService>();
             services.AddScoped<ISettingsService, SettingsService>();
             services.AddScoped<INoticeService, NoticeService>();
+            services.AddScoped<ISeedService, SeedService>();
             services.AddAutoMapper(typeof(Startup));
         }
 
