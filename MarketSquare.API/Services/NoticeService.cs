@@ -11,28 +11,29 @@ namespace MarketSquare.API.Services
 {
     public class NoticeService : INoticeService
     {
-        private readonly IRepository<Notice> _noticeTagRepository;
-        private readonly IRepository<Notice> _noticeRepository;
+        INoticesRepository _noticeRepository;
+        IRepository<User> _userRepository;
         private readonly IMapper _mapper;        
-        public NoticeService(IRepository<Notice> noticeTagRepository,
-         IRepository<Notice> noticeRepository,
+        public NoticeService(
+         INoticesRepository noticeRepository,
+         IRepository<User> userRepository,
          IMapper mapper){
-            _noticeTagRepository = noticeTagRepository ?? throw new ArgumentNullException(nameof(noticeTagRepository));;
             _noticeRepository = noticeRepository ?? throw new ArgumentNullException(nameof(noticeRepository));;
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));;
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public async Task<IEnumerable<NoticeTagForListDto>> GetNoticeTags(){
-            /*var noticeTags = await _noticeTagRepository.FindAsyncWithIncludedEntities(x=> true, 
-                includeTagName => includeTagName.NoticeTags,
-                includeUserName => includeUserName.Creator.Username);*/
-            //var noticeTagsDto = _mapper.Map<IEnumerable<NoticeTagForListDto>>(noticeTags);
-            var noticeTags = await _noticeTagRepository.FindAsyncWithIncludedEntities(x=> true, 
-                includeTagName => includeTagName);
-            var notice = await _noticeRepository.FindAsyncWithIncludedEntities(x=> true, 
-                include => include.NoticeTags);
-            var tags = notice.Select(x=> x.NoticeTags.Select(x => x.Tag)).ToList();
-            var noticeTagsDto = new List<NoticeTagForListDto>();
+
+            var allNotices = _noticeRepository.GetAllNotices().ToList();
+
+            foreach(var notice in allNotices) 
+            {
+                var creator =  _userRepository.Find(x=> x.Id == notice.CreatorId).First();
+                notice.Creator = creator;
+            }
+
+            var noticeTagsDto = _mapper.Map<IEnumerable<NoticeTagForListDto>>(allNotices);
             return noticeTagsDto;
         }
     }

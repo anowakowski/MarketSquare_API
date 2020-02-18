@@ -37,6 +37,7 @@ namespace MarketSquare.API
             services.AddScoped<DbContext>(sp => sp.GetRequiredService<DataContext>());
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IRepositoryFactory, RepositoryFactory>();
+            services.AddScoped<INoticesRepository, NoticesRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITagService, TagService>();
