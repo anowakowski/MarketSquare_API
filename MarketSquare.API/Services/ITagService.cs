@@ -8,5 +8,6 @@ namespace MarketSquare.API.Services
     {
         Task<IEnumerable<TagForListDto>> GetAllTags();
         Task<IEnumerable<TagForListDto>> GetTagsByName(string name);
+        Task AddTag(TagForListDto t);
     }
 }
