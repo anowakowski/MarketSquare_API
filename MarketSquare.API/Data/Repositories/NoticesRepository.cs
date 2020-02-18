@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -20,6 +21,13 @@ namespace MarketSquare.API.Data.Repositories
         public IEnumerable<Notice> GetAllNotices()
         {
             return DbSet.Include(x => x.NoticeTags).ThenInclude(x=>x.Tag);
+        }
+          public IEnumerable<Notice> GetAllNotices(int [] tags)
+        {            
+            return DbSet
+                .Where(n => n.NoticeTags.Any(nt => tags.Contains(nt.Tag.Id)))
+                .Include(x => x.NoticeTags)
+                .ThenInclude(x=>x.Tag);
         }
     }
 }

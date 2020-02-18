@@ -22,10 +22,9 @@ namespace MarketSquare.API.Controllers
         }
 
         [HttpGet("getAllNotices")]
-        public async Task<IActionResult> getAllNotices()
+        public async Task<IActionResult> getAllNotices([FromQuery(Name = "tags")] int[] tags)
         {
-            var notices = _noticeService.GetNoticeTags();
-
+            var notices = await _noticeService.GetNoticeTags(tags);
             return Ok(notices);
         }
 
