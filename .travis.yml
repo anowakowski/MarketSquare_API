@@ -1,0 +1,11 @@
+language: csharp
+mono: none
+sudo: false
+dotnet: 3.1
+dist: bionic
+
+before_script:
+ - dotnet restore
+ 
+script:
+ - dotnet build
