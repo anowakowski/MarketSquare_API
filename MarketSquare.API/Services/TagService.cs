@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using MarketSquare.API.Data;
 using MarketSquare.API.Data.Models;
 using MarketSquare.API.Data.Repositories;
 using MarketSquare.API.Dtos;
@@ -13,11 +14,28 @@ namespace MarketSquare.API.Services
     {
         private readonly IRepository<Tag> _tagsRepository;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public TagService(IRepository<Tag> tagsRepository, IMapper mapper)
+        public TagService(
+            IRepository<Tag> tagsRepository, 
+            IMapper mapper, 
+            IUnitOfWork unitOfWork)
         {
             _tagsRepository = tagsRepository ?? throw new ArgumentNullException(nameof(tagsRepository));
             this._mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+        }
+
+        public async Task AddTag(TagForListDto tag)
+        {
+            var dbTag = _mapper.Map<Tag>(tag);
+            var existingTag = await _tagsRepository.FirstOrDefaultAsync(t =>t.Name == tag.Name);
+            if(existingTag == null)
+            {
+                await _tagsRepository.AddAsync(dbTag);
+            }
+
+            await _unitOfWork.CompleteAsync();
         }
 
         public async Task<IEnumerable<TagForListDto>> GetAllTags()
