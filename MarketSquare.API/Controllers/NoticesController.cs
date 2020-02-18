@@ -40,5 +40,13 @@ namespace MarketSquare.API.Controllers
             await _noticeService.AddNotice(notice);
             return Ok(notice);
         }
+
+
+        [HttpGet("getMyNotices")]
+        public IActionResult GetMyNotices(string username)
+        {
+            var notices = _noticeService.GetMyNotices(username);
+            return Ok(notices);
+        }
     }
 }

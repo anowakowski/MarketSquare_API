@@ -77,5 +77,13 @@ namespace MarketSquare.API.Services
 
             await _unitOfWork.CompleteAsync();
         }
+
+        public IEnumerable<UserNoticeDto> GetMyNotices(string username)
+        {
+            var notices = _noticeRepository.GetMyNotices(username);
+
+            var noticesDto = _mapper.Map<IEnumerable<UserNoticeDto>>(notices);
+            return noticesDto;
+        }
     }
 }
