@@ -23,17 +23,22 @@ namespace MarketSquare.API.Services
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<IEnumerable<NoticeTagForListDto>> GetNoticeTags(){
+        public async Task<IEnumerable<NoticeTagForListDto>> GetNoticeTags(int[] tags= null){
 
-            var allNotices = _noticeRepository.GetAllNotices().ToList();
-
-            foreach(var notice in allNotices) 
+            List<Notice> notices;
+            if(tags!= null && tags.Length > 0){
+                notices = _noticeRepository.GetAllNotices(tags).ToList();
+            }else{
+                notices = _noticeRepository.GetAllNotices().ToList();
+            }
+            
+            foreach(var notice in notices) 
             {
                 var creator =  _userRepository.Find(x=> x.Id == notice.CreatorId).First();
                 notice.Creator = creator;
             }
 
-            var noticeTagsDto = _mapper.Map<IEnumerable<NoticeTagForListDto>>(allNotices);
+            var noticeTagsDto = _mapper.Map<IEnumerable<NoticeTagForListDto>>(notices);
             return noticeTagsDto;
         }
     }
