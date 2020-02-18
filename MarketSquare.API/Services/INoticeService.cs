@@ -8,6 +8,7 @@ namespace MarketSquare.API.Services
     public interface INoticeService
     {
         Task<IEnumerable<NoticeTagForListDto>> GetNoticeTags(int[] tags);
-        Task AddNotice(NewNotice notice); 
+        IEnumerable<UserNoticeDto> GetMyNotices(string username);
+        Task AddNotice(NewNotice notice);
     }
 }

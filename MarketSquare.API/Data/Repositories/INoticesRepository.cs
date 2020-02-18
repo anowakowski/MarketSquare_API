@@ -10,5 +10,6 @@ namespace MarketSquare.API.Data.Repositories
     {
         IEnumerable<Notice> GetAllNotices();
         IEnumerable<Notice> GetAllNotices(int[] tags);
+        IEnumerable<UserNotice> GetMyNotices(string username);
     }
 }
