@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using MarketSquare.API.Dtos;
 using MarketSquare.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,12 @@ namespace MarketSquare.API.Controllers
             var notices = await _noticeService.GetNoticeTags();
 
             return Ok(notices);
+        }
+
+        [HttpPost("addNotice")]
+        public async Task<IActionResult> AddNotice(NewNotice notice)
+        {
+            return Ok(notice);
         }
     }
 }
