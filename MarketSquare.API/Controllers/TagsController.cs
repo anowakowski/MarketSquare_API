@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using MarketSquare.API.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -22,9 +21,7 @@ namespace MarketSquare.API.Controllers
         {
             var tags = await this.tagService.GetAllTags();
 
-            var tagNames = tags.Select(tag => tag.Name).ToList();
-
-            return Ok(tagNames);
+            return Ok(tags);
         }
     }
 }
