@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace MarketSquare.API.Dtos
@@ -7,7 +8,7 @@ namespace MarketSquare.API.Dtos
         public string Name { get; set; }
         public string Description { get; set; }
         public string CreatorName { get; set; }
-        public int CreationDateTime { get; set; }
+        public DateTime CreationDate { get; set; }
         public IEnumerable<TagForListDto> Tags { get; set; }
     }
 }

@@ -11,19 +11,29 @@ namespace MarketSquare.API.Services
 {
     public class NoticeService : INoticeService
     {
-        private readonly IRepository<NoticeTag> _noticeTagRepository;
+        INoticesRepository _noticeRepository;
+        IRepository<User> _userRepository;
         private readonly IMapper _mapper;        
-        public NoticeService(IRepository<NoticeTag> noticeTagRepository, IMapper mapper){
-            _noticeTagRepository = noticeTagRepository ?? throw new ArgumentNullException(nameof(noticeTagRepository));;
+        public NoticeService(
+         INoticesRepository noticeRepository,
+         IRepository<User> userRepository,
+         IMapper mapper){
+            _noticeRepository = noticeRepository ?? throw new ArgumentNullException(nameof(noticeRepository));;
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));;
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public async Task<IEnumerable<NoticeTagForListDto>> GetNoticeTags(){
-            var noticeTags = await _noticeTagRepository.FindAsyncWithIncludedEntities(x=> true, 
-                include => include.Notice,
-                include2 => include2.Tag,
-                include3 => include3.Notice.Creator);
-            var noticeTagsDto = _mapper.Map<IEnumerable<NoticeTagForListDto>>(noticeTags);
+
+            var allNotices = _noticeRepository.GetAllNotices().ToList();
+
+            foreach(var notice in allNotices) 
+            {
+                var creator =  _userRepository.Find(x=> x.Id == notice.CreatorId).First();
+                notice.Creator = creator;
+            }
+
+            var noticeTagsDto = _mapper.Map<IEnumerable<NoticeTagForListDto>>(allNotices);
             return noticeTagsDto;
         }
     }

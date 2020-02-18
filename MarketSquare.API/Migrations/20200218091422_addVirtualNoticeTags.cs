@@ -2,7 +2,7 @@
 
 namespace MarketSquare.API.Migrations
 {
-    public partial class AddedNoticeTagCollection : Migration
+    public partial class addVirtualNoticeTags : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

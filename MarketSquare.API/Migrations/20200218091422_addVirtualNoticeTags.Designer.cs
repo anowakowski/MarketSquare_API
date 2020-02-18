@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarketSquare.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200217095646_Subscriptions")]
-    partial class Subscriptions
+    [Migration("20200218091422_addVirtualNoticeTags")]
+    partial class addVirtualNoticeTags
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,19 +45,16 @@ namespace MarketSquare.API.Migrations
 
             modelBuilder.Entity("MarketSquare.API.Data.Models.NoticeTag", b =>
                 {
+                    b.Property<int>("NoticeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("NoticeId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("TagId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NoticeId");
+                    b.HasKey("NoticeId", "TagId");
 
                     b.HasIndex("TagId");
 
@@ -180,12 +177,16 @@ namespace MarketSquare.API.Migrations
             modelBuilder.Entity("MarketSquare.API.Data.Models.NoticeTag", b =>
                 {
                     b.HasOne("MarketSquare.API.Data.Models.Notice", "Notice")
-                        .WithMany()
-                        .HasForeignKey("NoticeId");
+                        .WithMany("NoticeTags")
+                        .HasForeignKey("NoticeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MarketSquare.API.Data.Models.Tag", "Tag")
-                        .WithMany()
-                        .HasForeignKey("TagId");
+                        .WithMany("NoticeTags")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MarketSquare.API.Data.Models.UserNotice", b =>
