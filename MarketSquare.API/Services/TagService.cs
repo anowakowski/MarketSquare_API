@@ -27,5 +27,14 @@ namespace MarketSquare.API.Services
 
             return tagsDto;
         }
+
+        public async Task<IEnumerable<TagForListDto>> GetTagsByName(string name)
+        {
+            var tags = await _tagsRepository.FindAsync(tag => tag.Name.Contains(name));
+
+            var tagsDto = _mapper.Map<IEnumerable<TagForListDto>>(tags);
+
+            return tagsDto;
+        }
     }
 }

@@ -23,5 +23,13 @@ namespace MarketSquare.API.Controllers
 
             return Ok(tags);
         }
+
+        [HttpGet("getTagsByName")]
+        public async Task<IActionResult> GetTagsByName(string name)
+        {
+            var tags = await this.tagService.GetTagsByName(name);
+
+            return Ok(tags);
+        }
     }
 }
