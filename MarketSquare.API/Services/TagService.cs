@@ -5,6 +5,7 @@ using AutoMapper;
 using MarketSquare.API.Data.Models;
 using MarketSquare.API.Data.Repositories;
 using MarketSquare.API.Dtos;
+using Microsoft.EntityFrameworkCore;
 
 namespace MarketSquare.API.Services
 {
@@ -30,7 +31,7 @@ namespace MarketSquare.API.Services
 
         public async Task<IEnumerable<TagForListDto>> GetTagsByName(string name)
         {
-            var tags = await _tagsRepository.FindAsync(tag => tag.Name.Contains(name));
+            var tags = await _tagsRepository.FindAsync(tag => EF.Functions.Like(tag.Name, $"%{name}%"));
 
             var tagsDto = _mapper.Map<IEnumerable<TagForListDto>>(tags);
 
