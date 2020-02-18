@@ -25,7 +25,7 @@ namespace MarketSquare.API.Migrations
                     b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("CreatorId")
+                    b.Property<int>("CreatorId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
@@ -169,7 +169,9 @@ namespace MarketSquare.API.Migrations
                 {
                     b.HasOne("MarketSquare.API.Data.Models.User", "Creator")
                         .WithMany()
-                        .HasForeignKey("CreatorId");
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MarketSquare.API.Data.Models.NoticeTag", b =>
