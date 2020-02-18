@@ -9,19 +9,25 @@ namespace MarketSquare.API.Helpers
     {
         public AutoMapperProfiles()
         {
-            FromDomainToDto();
+            Map();
         }
-        private void FromDomainToDto()
+        private void Map()
         {
-            CreateMap<User, UserForDetailedDto>();
+            CreateMap<User, UserForDetailedDto>().ReverseMap();
+            CreateMap<NewNotice, Notice>()
+                .ForMember(dest => dest.Name, opt => { opt.MapFrom(src => src.Name);})
+                .ForMember(dest => dest.Description, opt => { opt.MapFrom(src => src.Description);})
+                .ForMember(dest => dest.NoticeTags, opt => { opt.MapFrom(src => src.Tags);})
+                .ReverseMap();
+
             CreateMap<Notice, NoticeTagForListDto>()
                 .ForMember(dest => dest.CreatorName,
                     opt => { opt.MapFrom(src => src.Creator.Username); })
                 .ForMember(dest => dest.Tags,
                     opt => { opt.MapFrom(src => src.NoticeTags.Select(x => x.Tag)); })
                 .ForMember(dest => dest.CreationDate,
-                opt => {opt.MapFrom(src => src.CreationDateTime);});
-            CreateMap<Tag, TagForListDto>();
+                opt => {opt.MapFrom(src => src.CreationDateTime);}).ReverseMap();
+            CreateMap<Tag, TagForListDto>().ReverseMap();
         }
     }
 }
