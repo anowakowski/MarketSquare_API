@@ -2,7 +2,7 @@
 
 namespace MarketSquare.API.Migrations
 {
-    public partial class AddedNoticeTagCollection : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

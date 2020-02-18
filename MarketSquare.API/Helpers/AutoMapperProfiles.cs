@@ -14,9 +14,9 @@ namespace MarketSquare.API.Helpers
         private void FromDomainToDto()
         {
             CreateMap<User, UserForDetailedDto>();
-            CreateMap<NoticeTag, NoticeTagForListDto>()
+            CreateMap<Notice, NoticeTagForListDto>()
                 .ForMember(dest => dest.CreatorName,
-                    opt => { opt.MapFrom(src => src.Notice.Creator.Username); });
+                    opt => { opt.MapFrom(src => src.Creator.Username); });
             CreateMap<Tag, TagForListDto>();
         }
     }
