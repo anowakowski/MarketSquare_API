@@ -104,22 +104,22 @@ namespace MarketSquare.API.Services
             var userSubscr1 = new UserUserSubscription()
             {
                 IsBlacklisted = false,
-                SubscribedUser = user1,
-                User = user2                
+                SubscribedUser = user2,
+                User = user1              
             };
 
             var userSubscr2 = new UserUserSubscription()
             {
                 IsBlacklisted = false,
-                SubscribedUser = user1,
-                User = user2                
+                SubscribedUser = user2,
+                User = user1                
             };
 
             var userSubscr3 = new UserUserSubscription()
             {
                 IsBlacklisted = false,
-                SubscribedUser = user1,
-                User = user3                
+                SubscribedUser = user3,
+                User = user1                
             };
 
             await _userUserSubscribtionRepo.AddAsync(userSubscr1);
@@ -130,21 +130,21 @@ namespace MarketSquare.API.Services
             {
                 IsBlacklisted = false,
                 Tag = tag1,
-                User = user2                
+                User = user1             
             };
 
             var tagSubscr2 = new UserTagSubscription()
             {
                 IsBlacklisted = false,
                 Tag = tag2,
-                User = user2                
+                User = user1              
             };
 
             var tagSubscr3 = new UserTagSubscription()
             {
                 IsBlacklisted = false,
-                Tag = tag2,
-                User = user2                
+                Tag = tag3,
+                User = user1                
             };
 
             await _userTagSubscribtionRepo.AddAsync(tagSubscr1);
